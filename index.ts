@@ -1,6 +1,9 @@
-import getRegexp from './regexpgeneration'
+import Reg from './reg'
 import Bot from 'node-telegram-bot-api'
 import {Tasks} from "./interfaces"
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const keyboard = {
     inline_keyboard: [
@@ -45,14 +48,17 @@ if (process.env.TOKEN) {
     async function checkTasks() {
         for (let i = 0; i < tasks.length; i++) {
             if (tasks[i].isActive) {
-                const response = await getRegexp(tasks[i])
-                await bot.sendMessage(tasks[i].id, response)
+                let req = new Reg(tasks[i])
+                const response = await req.getRegexp()
+                await sendMessage(tasks[i].id, response)
                 tasks.splice(i, 1)
             }
         }
     }
 
-
+    async function sendMessage(chat_id:number, message:string) {
+        await bot.sendMessage(chat_id, message)
+    }
 } else {
-    throw new Error('Нет токена')
+    throw new Error('Missing token')
 }
