@@ -28,7 +28,7 @@ if (process.env.TOKEN) {
 
     setInterval(() => {
         checkTasks().catch(e => console.log(e))
-    }, 1000)
+    }, 500)
 
     bot.on('message', async msg => {
         const task = tasks.find(el => el.id === msg.chat.id)

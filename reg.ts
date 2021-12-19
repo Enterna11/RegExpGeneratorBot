@@ -16,9 +16,10 @@ export default class Reg {
         let isChange: boolean = true
         let newString: string = ''
         while (isChange === true) {
-            string = string.replace(/\[A-Z]\[a-z]/g, '[A-Za-z]')
-            string = string.replace(/\[А-ЯЁ]\[а-яё]/g, '[А-ЯЁа-яё]')
-            string = string.replace(/\[A-Za-z]\+\\d/g, '\w+')
+            string = string.replace(/((\[A-Z]|\[a-z])\+*(\[a-z]|\[A-Z])\+*)|((\[A-Za-z]|\[A-Z]|\[a-z])\+*(\[a-z]|\[A-Za-z]|\[A-Z])\+*)/g, '[A-Za-z]+')
+            string = string.replace(/((\\d|\\w)\+*(\[A-Za-z]|\[A-Z]|\[a-z])\+*)|((\[A-Za-z]|\[A-Z]|\[a-z])\+*(\\d|\\w)\+*)|((\[A-Za-z]|\[A-Z]|\[a-z])\+*(\\d|\\w)\+*(\[A-Za-z]|\[A-Z]|\[a-z])\+*)/g, '\\w+')
+            string = string.replace(/((\[А-ЯЁ]|\[а-яё])\+*(\[а-яё]|\[А-ЯЁ])\+*)|((\[А-ЯЁа-яё]|\[А-ЯЁ]|\[а-яё])\+*(\[а-яё]|\[А-ЯЁа-яё]|\[А-ЯЁ])\+*)/g, '[А-ЯЁа-яё]+')
+            console.log(string)
             if (newString === string) {
                 isChange = false
             } else {
