@@ -2,20 +2,22 @@
   "name": "test",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon"
+    "start": "nodemon",
+    "lint": "ts-standard"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "@types/node-telegram-bot-api": "^0.53.2",
+    "nodemon": "^2.0.15",
+    "ts-standard": "^11.0.0"
   },
   "dependencies": {
-    "@types/node-telegram-bot-api": "^0.53.2",
     "dotenv": "^10.0.0",
-    "node-telegram-bot-api": "^0.54.0"
+    "node-telegram-bot-api": "^0.56.0"
   }
 }
